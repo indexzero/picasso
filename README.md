@@ -7,7 +7,7 @@ Feather weight CLI tool for synching Github issue labels across repos.
 * Create a simple JSON object mapping `name` to `color` (e.g. `labels.example.json`):
 
 **labels.example.json**
-```
+``` js
   {
     "bug":         "fc2929",
     "duplicate":   "cccccc",
