@@ -2,7 +2,7 @@
   "name": "picasso",
   "version": "0.0.0",
   "author": "Charlie Robbins <charlie@nodejitsu.com>",
-  "description": "Feather weight CLI tool for syching Github issue labels across repos.",
+  "description": "Feather weight CLI tool for synching Github issue labels across repos.",
   "repository": {
     "type": "git",
     "url": "git://github.com/indexzero/picasso.git"
