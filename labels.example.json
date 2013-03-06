@@ -1,6 +1,7 @@
 {
   "bug":         "fc2929",
   "duplicate":   "cccccc",
+  "duplicate":   "cccccc",
   "enhancement": "84b6eb",
   "invalid":     "e6e6e6",
   "question":    "cc317c",
@@ -9,5 +10,6 @@
   "development": "0b02e1",
   "regression":  "e10c02",
   "blocked":     "444444",
+  "fixed":       "02e10c",
   "deployed":    "02e10c"
 }
