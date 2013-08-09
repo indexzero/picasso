@@ -11,7 +11,7 @@ f.dotfile_path('picasso');
 f({ name: 'username',   required: true },
   { name: 'password',   required: true },
   { name: 'repo',       required: true },
-  { name: 'label-file', required: true },
+  { name: 'file', required: true },
   function (opts) {
     var repo = opts.repo;
         
@@ -48,7 +48,7 @@ f({ name: 'username',   required: true },
       //
       // 1. Read the label-file
       //
-      async.apply(fs.readFile, opts['label-file'], 'utf8'),
+      async.apply(fs.readFile, opts['file'], 'utf8'),
       //
       // 2. List all Labels on the repo
       //
