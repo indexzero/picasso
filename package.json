@@ -1,6 +1,6 @@
 {
   "name": "picasso",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Charlie Robbins <charlie@nodejitsu.com>",
   "description": "Feather weight CLI tool for synching Github issue labels across repos.",
   "repository": {
