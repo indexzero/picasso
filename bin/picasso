@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 
-var fs = require('fs'),
-    async = require('async'),
-    f = require('frameless'),
-    request = require('request');
+const fs = require('fs');
+const path = require('path');
+const async = require('async');
+const f = require('frameless');
+const request = require('request');
+const { version } = require('../package.json');
 
 f.sensitive_options.push('password');
 f.dotfile_path('picasso');
@@ -14,7 +16,7 @@ f({ name: 'username',   required: true },
   { name: 'file', required: true },
   function (opts) {
     var repo = opts.repo;
-        
+
     //
     // Helper function for talking to Github
     //
@@ -27,6 +29,9 @@ f({ name: 'username',   required: true },
       request({
         method: req.method,
         json:   true,
+        headers: {
+          'user-agent': `picasso ${version}`
+        },
         body:   req.body
           ? JSON.stringify(req.body)
           : null,
@@ -43,12 +48,12 @@ f({ name: 'username',   required: true },
         return err ? next(err) : next(null, body);
       });
     }
-    
+
     async.waterfall([
       //
       // 1. Read the label-file
       //
-      async.apply(fs.readFile, opts['file'], 'utf8'),
+      async.apply(fs.readFile, path.resolve(opts['file']), 'utf8'),
       //
       // 2. List all Labels on the repo
       //
@@ -66,10 +71,10 @@ f({ name: 'username',   required: true },
       //   * If it exists update it.
       //
       function syncLabels(target, existing, done) {
-        var names = existing.map(function (label) {
+        var names = (existing || []).map(function (label) {
           return label.name;
         });
-        
+
         //
         // Target will be in format
         // {
@@ -89,12 +94,12 @@ f({ name: 'username',   required: true },
 
             //
             // If the `name` isnt in the set of existing
-            // `names` then create it. Otherwise update it. 
+            // `names` then create it. Otherwise update it.
             //
             if (names.indexOf(name) !== -1) {
               f.info('Updating ' + name + ' in ' + repo);
               send.method = 'PATCH';
-              send.label  = name; 
+              send.label  = name;
             }
             else {
               f.info('Creating ' + name + ' in ' + repo);
@@ -110,7 +115,7 @@ f({ name: 'username',   required: true },
         f.warn('Error syncing labels with ' + repo);
         return f.print(err);
       }
-      
+
       f.info('Done syncing labels with ' + repo);
     });
   }
