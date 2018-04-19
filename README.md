@@ -8,19 +8,22 @@ Feather weight CLI tool for synching Github issue labels across repos.
 
 **labels.example.json**
 ``` js
-  {
-    "bug":         "fc2929",
-    "duplicate":   "cccccc",
-    "enhancement": "84b6eb",
-    "invalid":     "e6e6e6",
-    "question":    "cc317c",
-    "wontfix":     "ffffff",
-    "design":      "6fa35a",
-    "development": "0b02e1",
-    "regression":  "e10c02",
-    "blocked":     "444444",
-    "deployed":    "02e10c"
-  }
+{
+  "good first issue": "DD1A8E",
+  "help wanted":      "74E7BA",
+  "investigate":      "74E7BA",
+  "feature request":  "DB2E2E",
+  "invalid":          "EDEDED",
+  "duplicate":        "EDEDED",
+  "wontfix":          "EDEDED",
+  "question":         "FFD069",
+  "faq":              "FFD069",
+  "docs":             "FFD069",
+  "bug":              "72D1ED",
+  "regression":       "72D1ED",
+  "breaking":         "72D1ED",
+  "blocked":          "444444"
+}
 ```
 
 * Install and run `picasso`:

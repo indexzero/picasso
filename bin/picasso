@@ -7,15 +7,30 @@ const f = require('frameless');
 const request = require('request');
 const { version } = require('../package.json');
 
+const defaultLabels = {
+  file: require.resolve('../labels.defaults.json'),
+  labels: require('../labels.defaults.json')
+};
+
 f.sensitive_options.push('password');
 f.dotfile_path('picasso');
 
-f({ name: 'username',   required: true },
-  { name: 'password',   required: true },
-  { name: 'repo',       required: true },
-  { name: 'file', required: true },
+f({ name: 'username', required: true },
+  { name: 'password', required: true },
+  { name: 'repo', required: true },
+  { name: 'file (press return for defaults)' },
   function (opts) {
     var repo = opts.repo;
+    var file = opts.file;
+
+    if (!opts.file) {
+      f.warn('Using default labels:');
+      Object.keys(defaultLabels.labels).forEach(label => {
+        f.warn(`  ${label}: ${defaultLabels.labels[label]}`);
+      });
+
+      opts.file = defaultLabels.file;
+    }
 
     //
     // Helper function for talking to Github
